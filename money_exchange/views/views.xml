@@ -17,10 +17,10 @@
     </record>
       
     <record id="view_order_form" model="ir.ui.view">
-            <field name="name">sale.order.form</field>
-            <field name="model">sale.order</field>
+            <field name="name">money_exchange.form</field>
+            <field name="model">money_exchange.money_exchange</field>
             <field name="arch" type="xml">
-              <form string="Sales Order" class="o_sale_order" js_class="sale_discount_form">
+              <form string="Money Exchange">
                 <header>
                     <button name="action_compute" id="action_compute"
                         string="Compute" class="btn-primary" type="object"
@@ -45,7 +45,7 @@
                             <field name="input_currency_rate"/>
                             <field name="input_amount"/>
                         </group>
-                        <group name="order_details">
+                        <group>
                             
                                 <label for="date_change" string="Exchange Date"/>
                             </div>
