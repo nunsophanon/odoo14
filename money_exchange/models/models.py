@@ -39,6 +39,7 @@ class money_exchange(models.Model):
     date_change = fields.Datetime(string='Date', required=True, readonly=True, index=True, states={'draft': [('readonly', False)], 'sent': [('readonly', False)]}, copy=False, default=fields.Datetime.now, help="Creation date of draft/sent orders,\nConfirmation date of confirmed orders.")
     user_id = fields.Many2one(
         'res.users', string='Salesperson', index=True, tracking=2, default=lambda self: self.env.user)
+    company_id = fields.Many2one('res.company', 'Company', required=True, index=True, default=lambda self: self.env.company)
     partner_id = fields.Many2one(
         'res.partner', string='Customer', readonly=True,
         states={'draft': [('readonly', False)], 'sent': [('readonly', False)]},
