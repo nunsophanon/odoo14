@@ -30,7 +30,7 @@ class money_exchange(models.Model):
         """
         self.output_amount = (self.input_amount*self.output_currency_rate)/self.input_currency_rate
 
-    name = fields.Char(string='Reference', required=True, copy=False, readonly=True, states={'draft': [('readonly', False)]}, index=True, default=lambda self: _('New'))
+    name = fields.Char(string='Reference', required=True, copy=False, readonly=True, states={'draft': [('readonly', False)]}, index=True, default=lambda self: ('New'))
     state = fields.Selection([
         ('draft', 'Draft'),
         ('computed', 'Computed'),
