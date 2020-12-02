@@ -52,4 +52,14 @@ class money_exchange(models.Model):
     output_amount = fields.Float(string='Output Amount', store=True, readonly=True, compute='_compute_output_amount', tracking=4)
     
     note = fields.Char()
+    
+    
+    def _action_compute(self):
+        self.write({'state': 'computed'})
+        
+    def _action_cancel(self):
+        self.write({'state': 'cencelled'})
+        
+    def _action_draft(self):
+        self.write({'state': 'draft'})
 
