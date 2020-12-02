@@ -24,7 +24,7 @@ class money_exchange(models.Model):
             
     
     @api.depends('input_amount', 'input_currency_rate', 'output_currency_rate')
-    def _amount_all(self):
+    def _compute_output_amount(self):
         """
         Compute the output amounts of the SO.
         """
