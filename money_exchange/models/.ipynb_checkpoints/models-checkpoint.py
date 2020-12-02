@@ -36,7 +36,7 @@ class money_exchange(models.Model):
         ('computed', 'Computed'),
         ('cancel', 'Cancelled'),
         ], string='Status', readonly=True, copy=False, index=True, tracking=3, default='draft')
-    date_change = fields.Datetime(string='Date', required=True, readonly=True, index=True, states={'draft': [('readonly', False)], 'sent': [('readonly', False)]}, copy=False, default=fields.Datetime.now, help="Creation date of draft/sent orders,\nConfirmation date of confirmed orders.")
+    date_change = fields.Datetime(string='Date', required=True, readonly=True, index=True, states={'draft': [('readonly', False)]}, copy=False, default=fields.Datetime.now, help="Creation date of draft/sent orders,\nConfirmation date of confirmed orders.")
     user_id = fields.Many2one(
         'res.users', string='Salesperson', index=True, tracking=2, default=lambda self: self.env.user)
     company_id = fields.Many2one('res.company', 'Company', required=True, index=True, default=lambda self: self.env.company)
@@ -50,9 +50,10 @@ class money_exchange(models.Model):
     input_currency_rate = fields.Float("Input Currency Rate", compute='_compute_input_currency_rate', compute_sudo=True, store=True, digits=(12, 6), readonly=True, help='Input Rate')
     output_currency_rate = fields.Float("Output Currency Rate", compute='_compute_output_currency_rate', compute_sudo=True, store=True, digits=(12, 6), readonly=True, help='Output Rate')
     input_amount = fields.Float(string='Input Amount',store=True)
+#     commission = fields.Float(string='Commission',store=True)
     output_amount = fields.Float(string='Output Amount', store=True, readonly=True, compute='_compute_output_amount', tracking=4)
     
-    note = fields.Char()
+    note = fields.Text('Note')
     
     
     def _action_compute(self):
