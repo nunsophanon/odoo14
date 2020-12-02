@@ -50,7 +50,7 @@ class money_exchange(models.Model):
     input_currency_rate = fields.Float("Input Currency Rate", compute='_compute_input_currency_rate', compute_sudo=True, store=True, digits=(12, 6), readonly=True, help='Input Rate')
     output_currency_rate = fields.Float("Output Currency Rate", compute='_compute_output_currency_rate', compute_sudo=True, store=True, digits=(12, 6), readonly=True, help='Output Rate')
     input_amount = fields.Float(string='Input Amount',store=True)
-    output_amount = fields.Monetary(string='Output Amount', store=True, readonly=True, compute='_compute_output_amount', tracking=4)
+    output_amount = fields.Float(string='Output Amount', store=True, readonly=True, compute='_compute_output_amount', tracking=4)
     
     note = fields.Char()
 
