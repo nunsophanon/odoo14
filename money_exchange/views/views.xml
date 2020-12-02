@@ -17,7 +17,7 @@
     </record>
       
     <record id="view_order_form" model="ir.ui.view">
-            <field name="name">money_exchange.form</field>
+            <field name="name">money_exchange form</field>
             <field name="model">money_exchange.money_exchange</field>
             <field name="arch" type="xml">
               <form string="Money Exchange">
@@ -46,7 +46,7 @@
                             <field name="input_amount"/>
                         </group>
                         <group>
-                            
+                            <div>
                                 <label for="date_change" string="Exchange Date"/>
                             </div>
                             <field name="date_change" nolabel="1" groups="base.group_no_one" attrs="{'invisible': [('state', 'in', ['sale', 'done', 'cancel'])]}"/>
