@@ -16,16 +16,16 @@
 
 
     <!-- actions opening views on models -->
-<!--
+
     <record model="ir.actions.act_window" id="money_exchange.action_window">
       <field name="name">money_exchange window</field>
       <field name="res_model">money_exchange.money_exchange</field>
       <field name="view_mode">tree,form</field>
     </record>
--->
+
 
     <!-- server action to the one above -->
-<!--
+
     <record model="ir.actions.server" id="money_exchange.action_server">
       <field name="name">money_exchange server</field>
       <field name="model_id" ref="model_money_exchange_money_exchange"/>
@@ -38,7 +38,7 @@
         }
       </field>
     </record>
--->
+
 
     <!-- Top menu item -->
 
