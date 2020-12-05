@@ -1,0 +1,13 @@
+<odoo>
+    <data>
+        
+        <!-- Sequences for currency exchange -->
+        <record id="seq_money_exchange" model="ir.sequence">
+            <field name="name">Money Exchange</field>
+            <field name="code">money.exchange</field>
+            <field name="prefix">ME/</field>
+            <field name="padding">5</field>
+        </record>
+        
+    </data>
+</odoo>
