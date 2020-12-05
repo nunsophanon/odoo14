@@ -60,7 +60,12 @@
                         <field name="output_currency_id"/>
                         <field name="output_currency_rate"/>
                         <field name="output_amount"/>
-                        <h2><label for="total" string="Total Amount"/><field name="total"/></h2>
+                        <h2>
+                            <div>
+                                <label for="total" string="Total Amount"/>
+                            </div>
+                            <field name="total"/>
+                        </h2>
                     </group>
                 </group>
                 <group>
