@@ -26,7 +26,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/views.xml',
-        'views/templates.xml',
+        'views/money_exchange_sequence.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
