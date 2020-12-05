@@ -83,4 +83,20 @@ class money_exchange(models.Model):
 
     def action_draft(self):
         self.write({'state': 'draft'})
+        
+        
+#     @api.model
+#     def create(self, vals):
+#         """
+#         Overrides orm create method.
+#         @param self: The object pointer
+#         @param vals: dictionary of fields value.
+#         """
+#         if not vals:
+#             vals = {}
+#         if self._context is None:
+#             self._context = {}
+#         seq_obj = self.env['ir.sequence']
+#         vals['name'] = seq_obj.next_by_code('money.exchange') or 'New'
+#         return super(money_exchange, self).create(vals)
 
