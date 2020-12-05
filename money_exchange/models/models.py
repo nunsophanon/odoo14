@@ -31,6 +31,19 @@ class money_exchange(models.Model):
         Compute the output amounts of the SO.
         """
         self.output_amount = (self.input_amount*self.output_currency_rate)/self.input_currency_rate
+        
+        
+    @api.depends('output_amount', 'service')
+    def _compute_tax_change(self):
+        '''
+        When you change out_amount or tax
+        it will update the total of the currency exchange
+        -------------------------------------------------
+        @param self: object pointer
+        '''
+        
+        self.total = self.output_amount + self.service
+        
 
     state = fields.Selection([
         ('draft', 'Draft'),
@@ -55,7 +68,8 @@ class money_exchange(models.Model):
     input_amount = fields.Float(string='Input Amount',store=True, readonly=True, states={'draft': [('readonly', False)]})
 #     commission = fields.Float(string='Commission',store=True)
     output_amount = fields.Float(string='Output Amount', store=True, readonly=True, compute='_compute_output_amount', tracking=4)
-    
+    service = fields.Float('Service (%)', size=64, default=0.0, index=True)
+    total = fields.Float(compute="_compute_tax_change", string='Total Amount')
     note = fields.Text('Note')
 
 
