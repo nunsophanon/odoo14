@@ -42,7 +42,7 @@ class money_exchange(models.Model):
         @param self: object pointer
         '''
         service = 0.0
-        service = ((self.output_amount) * (float(self.service))) / 100
+        service = (self.output_amount * self.service) / 100
         self.total = self.output_amount + service
         
 
