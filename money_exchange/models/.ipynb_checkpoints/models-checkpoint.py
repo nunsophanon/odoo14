@@ -34,13 +34,14 @@ class money_exchange(models.Model):
         
         
     @api.depends('output_amount', 'service')
-    def _compute_tax_change(self):
+    def _compute_total_service(self):
         '''
         When you change out_amount or tax
         it will update the total of the currency exchange
         -------------------------------------------------
         @param self: object pointer
         '''
+        service = 0.0
         service = ((self.output_amount) * (float(self.service))) / 100
         self.total = self.output_amount + service
         
@@ -69,7 +70,7 @@ class money_exchange(models.Model):
 #     commission = fields.Float(string='Commission',store=True)
     output_amount = fields.Float(string='Output Amount', store=True, readonly=True, compute='_compute_output_amount', tracking=4)
     service = fields.Float('Service (%)', size=64, default=0.0, index=True)
-    total = fields.Float(compute="_compute_tax_change", string='Total Amount')
+    total = fields.Float(compute="_compute_total_service", string='Total Amount')
     note = fields.Text('Note')
 
 
