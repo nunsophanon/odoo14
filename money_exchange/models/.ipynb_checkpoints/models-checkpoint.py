@@ -42,10 +42,9 @@ class money_exchange(models.Model):
         @param self: object pointer
         '''
         for rec in self:
-            service = 0.0
             if rec.output_amount:
-                service = (rec.output_amount * rec.service) / 100
-                rec.total = rec.output_amount + service
+                ser = ((rec.output_amount) * (float(rec.service))) / 100
+                rec.total = rec.out_amount + ser
         
 
     state = fields.Selection([
