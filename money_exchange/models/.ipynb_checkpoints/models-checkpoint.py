@@ -44,7 +44,7 @@ class money_exchange(models.Model):
         for rec in self:
             if rec.output_amount:
                 ser = ((rec.output_amount) * (float(rec.service))) / 100
-                rec.total = rec.out_amount + ser
+                rec.total = rec.output_amount + ser
                 
             else:
                 rec.total = 0.0
