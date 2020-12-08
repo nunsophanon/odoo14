@@ -45,6 +45,9 @@ class money_exchange(models.Model):
             if rec.output_amount:
                 ser = ((rec.output_amount) * (float(rec.service))) / 100
                 rec.total = rec.out_amount + ser
+                
+            else:
+                rec.total = 0.0
         
 
     state = fields.Selection([
