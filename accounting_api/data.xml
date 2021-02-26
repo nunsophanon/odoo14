@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.config_parameter" id="hr_presence_control_login" forcecreate="False">
+            <field name="key">accounting.api.key</field>
+            <field name="value">f330858c499d1c880b1dbd65c2657440ace3dc4e</field>
+        </record>
+
+    </data>
+</odoo>
