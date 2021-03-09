@@ -11,10 +11,10 @@ PRIVATE_KEY = "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcw
 class AccountingAPI(http.Controller):
 
     @validate_token
-    @http.route('/accounting/login', type="http", auth="none", methods=["GET"], csrf=False)
+    @http.route('/accounting/login', type="http", auth="none", methods=["GET", "POST"], csrf=False)
     def get_jwt_token(self, **payload):
-        login = payload.get("username",False)
-        password = payload.get("password",False)
+        login = payload.get("username", False)
+        password = payload.get("password", False)
         try:
             uid = request.session.authenticate(request.session.db, login, password)
             to_be_encoded = {
@@ -29,6 +29,41 @@ class AccountingAPI(http.Controller):
             else:
                 message = e.args[0]
         return invalid_response_http(type="Login error", message=message, status=403)
+
+    @validate_token
+    @validate_jwt
+    @http.route('/accounting/get_accounts', type="http", auth="none", methods=["GET"], csrf=False)
+    def get_accounts(self, **payload):
+        try:
+            accounts = request.env['account.account'].sudo().search([])
+            account_lists = []
+            for account in accounts:
+                account_lists.append({
+                    "id": account.id,
+                    "code":account.code,
+                    "name": account.name,
+                })
+            return valid_response_http(account_lists)
+        except:
+            message = _("Error during get Account model. Please contact to administrator.")
+        return invalid_response_http(type="Getting Accounts Error", message=message, status=403)
+
+    @validate_token
+    @validate_jwt
+    @http.route('/accounting/get_journals', type="http", auth="none", methods=["GET"], csrf=False)
+    def get_journals(self, **payload):
+        try:
+            journals = request.env['account.journal'].sudo().search([])
+            journal_lists = []
+            for journal in journals:
+                journal_lists.append({
+                    "id": journal.id,
+                    "name": journal.name,
+                })
+            return valid_response_http(journal_lists)
+        except:
+            message = _("Error during get Journal model. Please contact to administrator.")
+        return invalid_response_http(type="Getting Journal Error", message=message, status=403)
 
     @validate_token
     @validate_jwt
