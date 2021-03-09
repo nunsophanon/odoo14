@@ -1,7 +1,7 @@
 import odoo
 from odoo import api, fields, models, http, modules, _
 from odoo.http import request
-from odoo.addons.mobile_api.controller.helper import validate_token, validate_jwt, get_table_model, valid_response, invalid_response, valid_response_http, invalid_response_http
+from odoo.addons.accounting_api.controller.helper import validate_token, validate_jwt, get_table_model, valid_response, invalid_response, valid_response_http, invalid_response_http
 import json
 import math
 import jwt
@@ -48,9 +48,9 @@ class AccountingAPI(http.Controller):
 
     @validate_token
     @validate_jwt
-    @http.route('/accounting/update_journal_entries', type="http", auth="none", methods=["post"], csrf=False)
+    @http.route('/accounting/update_journal_entry', type="http", auth="none", methods=["post"], csrf=False)
     def update_journal_entries(self, uid, **payload):
-        journal_id = payload.get("username", False)
+        journal_id = payload.get("id", False)
         values = payload.get("values", False)
         if values:
             journal_data = json.loads(values)
