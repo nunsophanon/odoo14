@@ -20,7 +20,7 @@ class AccountingAPI(http.Controller):
             to_be_encoded = {
                 'user_id': uid
             }
-            encoded_jwt = jwt.encode(to_be_encoded, PRIVATE_KEY, algorithm='HS256')
+            encoded_jwt = jwt.encode(to_be_encoded, PRIVATE_KEY, algorithm='HS256').decode('utf-8')
             return valid_response_http({"accessToken": encoded_jwt})
         except odoo.exceptions.AccessDenied as e:
             request.uid = 1
